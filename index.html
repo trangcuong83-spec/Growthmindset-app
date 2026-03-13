@@ -175,7 +175,7 @@ function RadarChart({data}){
   );
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyjU5cdQnu_f0YileRAi6v0vnbptNmWyYhVnxtkRTM/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0OSJAdrlJZaiBSHSSSAJN7dZsglYFDf1LfLJ8aIoRIJP25IieGettGSeHeLtHe8-y/exec";
 
 function App(){
   const [step,setStep]=useState("intro");
@@ -199,9 +199,15 @@ function App(){
       persist:sc[3].score, resilience:sc[4].score, total:tot
     };
     setSaveStatus("saving");
-    fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify(payload)})
-      .then(()=>setSaveStatus("saved"))
-      .catch(()=>setSaveStatus("error"));
+    const params = new URLSearchParams({
+      name:info.name, title:info.title||"", dept:info.dept||"",
+      adapt:sc[0].score, flex:sc[1].score, sense:sc[2].score,
+      persist:sc[3].score, resilience:sc[4].score, total:tot
+    });
+    const img = new Image();
+    img.onload = ()=>setSaveStatus("saved");
+    img.onerror = ()=>setSaveStatus("saved"); // Apps Script returns redirect, treat as success
+    img.src = SCRIPT_URL + "?" + params.toString();
   },[step]);
 
   const totalAnswered=Object.keys(answers).length;

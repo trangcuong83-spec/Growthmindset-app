@@ -175,7 +175,7 @@ function RadarChart({data}){
   );
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbynBYIqPGn0DmJ5tg3DK-cUIGCh0sNDQ1cP_Q1WNcVOI8TOX_74Q5nfJkv2mGI4cak1/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyjU5cdQnu_f0YileRAi6v0vnbptNmWyYhVnxtkRTM/exec";
 
 function App(){
   const [step,setStep]=useState("intro");
@@ -315,7 +315,6 @@ function App(){
                     <span style={{width:26,height:26,borderRadius:"50%",background:ans?comp.color:"#F1F5F9",color:ans?"white":"#94A3B8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,flexShrink:0}}>{q.num}</span>
                     <div>
                       <p style={{margin:0,color:"#1E293B",fontSize:14,lineHeight:1.6}}>{q.text}</p>
-                      <p style={{margin:"4px 0 0",color:q.reverse?"#EA580C":"#94A3B8",fontSize:12}}>{q.hint}</p>
                     </div>
                   </div>
                   <div style={{display:"flex",gap:6}}>
